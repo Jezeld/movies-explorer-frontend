@@ -1,0 +1,35 @@
+.header {
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  /* max-width: 1140px; */
+  display: flex;
+  min-height: 74px;
+  background-color: #073042;
+  justify-content: center;
+}
+
+.header__wrapper {
+  padding: 0px 70px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  margin: 0px;
+  aspect-ratio: 1/1;
+  background-image: url("./../../images/logo.svg");
+  max-width: 38px;
+  width: 100%;
+  background-repeat: no-repeat;
+  align-items: flex-start;
+  background-size: contain;
+}
+
+@media screen and (max-width: 769px) {
+  .header__wrapper {
+    padding: 0px 30px;
+  }
+}

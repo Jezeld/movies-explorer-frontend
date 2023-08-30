@@ -68,3 +68,15 @@
     margin: 5px 0 0;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .moviesCard__name_text-content {
+    gap: 12px;
+  }
+  .moviesCard__name_text-content_title {
+    font-size: 12px;
+  }
+  .moviesCard__name_text-content_time {
+    font-size: 10px;
+  }
+}

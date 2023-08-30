@@ -1,0 +1,101 @@
+@keyframes burgerAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.BurgerMenu__profile {
+  background-image: url(../../images/profile.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100px;
+  height: 32px;
+  margin: 0 auto 90px;
+}
+.BurgerMenu__wrap_none {
+  display: none;
+}
+.BurgerMenu__wrap {
+  visibility: hidden;
+  width: 0;
+}
+
+@media (max-width: 768px) {
+  .BurgerMenu__wrap {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    animation: burgerAnimation 0.4s;
+    z-index: 1;
+    will-change: opacity;
+    visibility: visible;
+  }
+  .BurgerMenu__nav {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    background-color: #202020;
+    position: fixed;
+    top: 0;
+    left: 247px;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+  }
+  .BurgerMenu__list {
+    list-style: none;
+    margin: 160px 0 0 0;
+    padding: 0;
+  }
+  .BurgerMenu__link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .BurgerMenu__item {
+    margin-bottom: 28px;
+  }
+  .BurgerMenu__item:first-child {
+    margin-bottom: 29px;
+  }
+  .BurgerMenu__active {
+    border-bottom: 2px solid #fff;
+    padding-bottom: 4px;
+  }
+}
+
+@media (max-width: 767px) {
+  .BurgerMenu__nav {
+    left: 123px;
+  }
+}
+
+@media (max-width: 375px) {
+  .BurgerMenu__nav {
+    left: 0;
+  }
+  .BurgerMenu__list {
+    margin: 145px 0 0 0;
+  }
+  .BurgerMenu__item {
+    margin-bottom: 24px;
+  }
+  .BurgerMenu__item:first-child {
+    margin-bottom: 26px;
+  }
+  .BurgerMenu__active {
+    padding-bottom: 5px;
+  }
+}

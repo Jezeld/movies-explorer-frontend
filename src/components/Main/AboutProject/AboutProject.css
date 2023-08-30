@@ -18,7 +18,7 @@
   letter-spacing: -0.88px;
   margin: 0;
 }
-.about-project__table {
+.table {
   display: grid;
   /* grid-template-columns: repeat(2, minmax(min-content, max-content)); */
   grid-template-columns: repeat(2, 1fr);
@@ -35,7 +35,7 @@
   padding: 0;
   margin: 0;
 }
-.table__item_title {
+.table__title {
   margin: 0;
   padding: 0;
   font-size: 20px;
@@ -44,7 +44,7 @@
   line-height: normal;
   letter-spacing: -0.8px;
 }
-.table__item_text {
+.table__text {
   margin: 0;
   padding: 0;
   font-size: 14px;
@@ -52,34 +52,34 @@
   font-weight: 400;
   line-height: 20px;
 }
-.about-project__line {
+.line {
   display: grid;
   grid-template-columns: 228px 1fr;
   grid-template-rows: 36px 36px;
   justify-items: center;
   padding-bottom: 110px;
 }
-.about-project__week-one {
+.line__week-one {
   min-width: 228px;
   min-height: 36px;
   background-color: #3ddc84;
   color: black;
   margin: 0;
 }
-.about-project__week-four {
+.line__week-four{
   background-color: #303030;
   width: 100%;
   min-height: 36px;
   margin: 0;
 }
-.about-project_font {
+.line__font {
   text-align: center;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 35px;
 }
-.about-project__line-caption {
+.line__caption {
   margin: 14px 0 0;
   min-height: 36px;
   font-size: 14px;
@@ -93,18 +93,18 @@
   .about-project {
     padding: 90px 50px 0;
   }
-  .about-project__table {
+  .table {
     margin: 70px auto 93px;
   }
-  .table__item_text {
+  .table__text {
     font-size: 12px;
     line-height: 18px; /* 150% */
   }
-  .about-project__line {
+  .line {
     grid-template-columns: 140px 1fr;
     padding-bottom: 85px;
   }
-  .about-project__week-one {
+  .line__week-one {
     min-width: 140px;
   }
 }
@@ -113,7 +113,7 @@
   .about-project {
     padding: 70px 18px 0;
   }
-  .about-project__table {
+  .table {
     margin: 60px auto;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, 1fr);
@@ -126,25 +126,25 @@
   .table__item {
     gap: 17px;
   }
-  .table__item_title {
+  .table__title {
     font-size: 18px;
     letter-spacing: -0.72px;
   }
-  .table__item_text {
+  .table__text {
     font-size: 11px;
     line-height: 16px; /* 145.455% */
   }
-  .about-project__line {
+  .line {
     grid-template-columns: 100px 1fr;
     padding-bottom: 70px;
   }
-  .about-project__week-one {
+  .line__week-one {
     min-width: 100px;
   }
-  .about-project_font {
+  .line__font {
     font-size: 11px;
   }
-  .about-project__line-caption {
+  .line__caption {
     margin-top: 10px;
     font-size: 11px;
     line-height: normal;

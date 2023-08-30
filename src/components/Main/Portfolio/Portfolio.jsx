@@ -7,8 +7,8 @@ function Portfolio() {
     <section className="portfolio">
         <h4 className="portfolio__title">Портфолио</h4>
         <div className="portfolio__container">
-    <Link
-      className="portfolio__link"
+     <Link
+      className="portfolio-link"
       type="link"
       to="https://github.com/Jezeld/how-to-learn"
     >
@@ -16,7 +16,7 @@ function Portfolio() {
       <div className="portfolio__image-arrow"></div>
     </Link>
     <Link
-      className="portfolio__link"
+      className="portfolio-link"
       type="link"
       to="https://github.com/Jezeld/russian-travel"
     >
@@ -24,7 +24,7 @@ function Portfolio() {
       <div className="portfolio__image-arrow"></div>
     </Link>
     <Link
-      className="portfolio__link"
+      className="portfolio-link"
       type="link"
       to="https://github.com/Jezeld/react-mesto-api-full-gha"
     >

@@ -20,8 +20,11 @@ import "./Header.css";
 const Header = ({ children }) => {
   const location = useLocation();
 
-    const header =
-    location.pathname === '/' || location.pathname === '/movies' || location.pathname === '/saved-movies' || location.pathname === '/profile';
+  const header =
+    location.pathname === "/" ||
+    location.pathname === "/movies" ||
+    location.pathname === "/saved-movies" ||
+    location.pathname === "/profile";
 
   return (
     <>

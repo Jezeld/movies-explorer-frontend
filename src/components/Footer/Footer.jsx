@@ -24,6 +24,7 @@ function Footer() {
               <Link
                 className="footer__item footer__item-link"
                 type="link"
+                target="blank"
                 to="https://practicum.yandex.ru/"
               >
                 Яндекс.Практикум
@@ -31,6 +32,7 @@ function Footer() {
               <Link
                 className="footer__item footer__item-link"
                 type="link"
+                target="blank"
                 to="https://github.com/Jezeld"
               >
                 Github

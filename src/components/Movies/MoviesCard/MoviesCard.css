@@ -19,12 +19,12 @@
   justify-content: space-between;
   border-radius: 0px 0px 6px 6px;
 }
-.moviesCard__name_text-content {
+.moviesCard__text-content {
   display: flex;
   flex-direction: column;
   gap: 17px;
 }
-.moviesCard__name_text-content_title {
+.moviesCard__title {
   font-size: 13px;
   font-style: normal;
   font-weight: 500;
@@ -35,15 +35,41 @@
   overflow: hidden;
   max-width: 290px;
 }
-.moviesCard__name_text-content_time {
+.moviesCard__time {
   color: #8b8b8b;
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
-.moviesCard__name_like {
+
+.moviesCard__like {
+  background-color: transparent;
   background-image: url(../../../images/heart.svg);
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.moviesCard__like_active {
+  background-image: url(../../../images/heartactiv.svg);
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+}
+
+
+.moviesCard__delete {
+  background-image: url(../../../images/trach.svg);
   width: 30px;
   height: 30px;
   background-repeat: no-repeat;
@@ -54,6 +80,8 @@
   padding: 0;
 }
 
+
+
 @media screen and (max-width: 769px) {
   .moviesCard__name {
     margin: 10px 14px 14px;
@@ -61,22 +89,22 @@
     justify-content: space-between;
     border-radius: 0px 0px 6px 6px;
   }
-  .moviesCard__name_text-content {
+  .moviesCard__text-content {
     gap: 15px;
   }
-  .moviesCard__name_text-content_title {
+  .moviesCard__title {
     margin: 5px 0 0;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .moviesCard__name_text-content {
+  .moviesCard__text-content {
     gap: 12px;
   }
-  .moviesCard__name_text-content_title {
+  .moviesCard__title {
     font-size: 12px;
   }
-  .moviesCard__name_text-content_time {
+  .moviesCard__time {
     font-size: 10px;
   }
 }

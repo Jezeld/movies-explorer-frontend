@@ -23,6 +23,7 @@ function AboutMe() {
           <Link
             className="about-me__link-github"
             type="link"
+            target="blank"
             to="https://github.com/Jezeld"
           >
             Github

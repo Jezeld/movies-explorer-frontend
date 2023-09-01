@@ -10,6 +10,7 @@ function Portfolio() {
      <Link
       className="portfolio-link"
       type="link"
+      target="blank"
       to="https://github.com/Jezeld/how-to-learn"
     >
       <p className="portfolio-link__text">Статичный сайт</p>
@@ -18,6 +19,7 @@ function Portfolio() {
     <Link
       className="portfolio-link"
       type="link"
+      target="blank"
       to="https://github.com/Jezeld/russian-travel"
     >
       <p className="portfolio-link__text">Адаптивный сайт</p>
@@ -26,6 +28,7 @@ function Portfolio() {
     <Link
       className="portfolio-link"
       type="link"
+      target="blank"
       to="https://github.com/Jezeld/react-mesto-api-full-gha"
     >
       <p className="portfolio-link__text">Одностраничное приложение</p>

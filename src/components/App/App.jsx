@@ -11,6 +11,7 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import Navigation from "../Navigation/Navigation.jsx";
 import NavigationMovie from "../NavigationMovie/NavigationMovie.jsx";
+import "./App.css"
 
 function App() {
   const location = useLocation();
@@ -21,6 +22,7 @@ function App() {
   return (
     <>
       <Header>{loggedIn ? <NavigationMovie /> : <Navigation />}</Header>
+      <main class="content">
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Main />} />
@@ -30,6 +32,7 @@ function App() {
         <Route path="/signup" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
+      </main>
       <Footer />
     </>
   );

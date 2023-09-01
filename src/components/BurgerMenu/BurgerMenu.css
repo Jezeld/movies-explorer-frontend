@@ -14,16 +14,16 @@
   height: 32px;
   margin: 0 auto 90px;
 }
-.BurgerMenu__wrap_none {
+.BurgerMenu__none {
   display: none;
 }
-.BurgerMenu__wrap {
+.BurgerMenu {
   visibility: hidden;
   width: 0;
 }
 
 @media (max-width: 768px) {
-  .BurgerMenu__wrap {
+  .BurgerMenu {
     position: fixed;
     background: rgba(0, 0, 0, 0.3);
     width: 100%;

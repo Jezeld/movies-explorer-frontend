@@ -1,19 +1,16 @@
 import React from "react";
 import "./MoviesCardList.css"
 import MoviesCard from "../MoviesCard/MoviesCard";
-import {moviesList} from "../../../utils/constants";
+// import {moviesList} from "../../../utils/constants";
 
-function MoviesCardList() {
+function MoviesCardList({movies}) {
   return(
-    <section className="moviesCardList">
-      {moviesList.map((movie) => {
-            return (
-              <MoviesCard
-                movie={movie}
-                key={movie.movieId}
-              />
-            );
-          })}
+    <section className="moviesCardList" aria-label="article">
+      <ul className="moviesCardList-grid">
+           {movies.map((movie) => (
+          <MoviesCard key={movie.id} movie={movie}/>
+        ))}
+        </ul>
     </section>
   )
 }

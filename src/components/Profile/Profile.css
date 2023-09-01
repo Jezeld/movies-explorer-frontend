@@ -71,8 +71,8 @@
   }
   .profile__button-exit {
     display: block;
-    margin: 15px auto 0;
-    padding-bottom: 150px;
+    margin: 15px auto 70px;
+    padding: 0;
     max-width: 410px;
     background-color: transparent;
     border: none;
@@ -94,6 +94,9 @@
     }
     .profile-form__button {
       margin: 175px auto 0;
+    }
+    .profile__button-exit {
+      margin: 15px auto 269px;
     }
   }
 
@@ -118,7 +121,7 @@
     }
     .profile__button-exit {
       display: block;
-      margin: 15px auto;
+      margin: 15px auto 40px;
       padding-bottom: 150px;
       max-width: 260px;
       font-size: 12px;

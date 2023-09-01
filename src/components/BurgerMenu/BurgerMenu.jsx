@@ -4,10 +4,10 @@ import "./BurgerMenu.css";
 function BurgerMenu({ isOpenMenu }) {
   return (
       <div
-        className={`BurgerMenu__wrap ${
-            !isOpenMenu ? "BurgerMenu__wrap_none" : ""
-        } `}
-      >
+      className={`BurgerMenu ${
+          !isOpenMenu ? "BurgerMenu__none" : ""
+      } `}
+    >
         <nav className="BurgerMenu__nav">
           <ul className="BurgerMenu__list">
             <li className="BurgerMenu__item">

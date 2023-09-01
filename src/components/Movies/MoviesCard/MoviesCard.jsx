@@ -1,20 +1,47 @@
-import React from "react";
-import "./MoviesCard.css";
+import React from 'react'
+import './MoviesCard.css'
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
-function MoviesCard(props) {
-  const { movie } = props;
+function MoviesCard ({ movie }) {
+  const [savedFilms, setSavedFilms] = useState(false)
+  const location = useLocation()
+  const trashFilms = location.pathname === '/saved-movies'
+  const [isShown, setIsShown] = useState(false)
   return (
-    <section className="moviesCard">
-      <img className="moviesCard__image" src={movie.image} alt={movie.name} />
-      <div className="moviesCard__name">
-        <div className="moviesCard__name_text-content">
-          <h2 className="moviesCard__name_text-content_title">{movie.nameRU}</h2>
-          <span className="moviesCard__name_text-content_time">{movie.duration}</span>
+    <li
+      className='moviesCard'
+      onMouseEnter={() => setIsShown(true)}
+      onMouseLeave={() => setIsShown(false)}
+    >
+      <article>
+        <img className='moviesCard__image' src={movie.image} alt={movie.name} />
+        <div className='moviesCard__name'>
+          <div className='moviesCard__text-content'>
+            <h2 className='moviesCard__title'>{movie.nameRU}</h2>
+            <span className='moviesCard__time'>{movie.duration}</span>
+          </div>
+          {!trashFilms && (
+            <button
+              className={`moviesCard__like ${
+                savedFilms ? 'moviesCard__like_active' : ''
+              } `}
+              onClick={() => setSavedFilms(!savedFilms)}
+              type='button'
+              aria-label='нравиться'
+            ></button>
+          )}
+          {isShown && trashFilms && (
+            <button
+              className='moviesCard__delete'
+              type='button'
+              aria-label='удалить'
+            ></button>
+          )}
         </div>
-        <button className="moviesCard__name_like"></button>
-      </div>
-    </section>
-  );
+      </article>
+    </li>
+  )
 }
 
-export default MoviesCard;
+export default MoviesCard

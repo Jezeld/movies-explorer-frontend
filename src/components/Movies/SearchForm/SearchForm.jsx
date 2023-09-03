@@ -3,7 +3,7 @@ import "./SearchForm.css";
 
 function SearchForm() {
   return (
-    <section className="search">
+    <section className="search" aria-label="поиск">
       <form className="form-search">
         <input
           required
@@ -14,7 +14,10 @@ function SearchForm() {
         ></input>
         <button className="form-search__button" type="submit" aria-label="Поиск фильмов"/>
         <div className="form-checkbox">
-        <button className="form-checkbox__button" type="button" />
+        <label>
+        <input type="checkbox" className="form-checkbox__button" name="short-film" />
+        <span className="form-checkbox__slider-btn"></span>
+          </label>
         <span className="form-checkbox__span">Короткометражки</span>
       </div>
       </form>

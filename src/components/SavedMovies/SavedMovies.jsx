@@ -7,7 +7,7 @@ import "./SavedMovies.css";
 
 function SavedMovies() {
   return (
-    <section className="savedMovies">
+    <section className="savedMovies" aria-label="сохраненные фильмы">
       <SearchForm />
              <MoviesCardList movies={moviesListSaved}/>
     </section>

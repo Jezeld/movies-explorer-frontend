@@ -2,9 +2,11 @@
   margin: 0 70px 0;
   padding: 0;
   border-bottom: 1px solid #424242;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .form-search {
-  margin: 0 0 69px;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -46,35 +48,65 @@
   padding: 0;
 }
 .form-checkbox {
-  margin: 40px 0 0;
+  box-sizing: border-box;
+  margin: 40px 0 69px;
   display: flex;
-  gap: 15px;
+  gap: 13px;
+  position: relative;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  width: 175px;
 }
 .form-checkbox__button {
-  background-color: transparent;
-  border: none;
-  background-image: url(../../../images/smalltumb.svg);
-  background-repeat: no-repeat;
-  width: 36px;
-  height: 22px;
-  padding: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
 }
-.form-checkbox__button_off {
-  background-image: url(../../../images/smalltumboff.svg);
+.form-checkbox__slider-btn {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #343434;
+  transition: 0.4s;
+  border-radius: 13px;
+  width: 36px;
+  height: 21px;
+}
+.form-checkbox__slider-btn::before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 2px;
+  background-color: #a0a0a0;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+.form-checkbox__button:checked + .form-checkbox__slider-btn {
+  background: #3ddc84;
+}
+.form-checkbox__button:checked + .form-checkbox__slider-btn::before {
+  background-color: #ffffff;
+  left: 18px;
 }
 .form-checkbox__span {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 18px; /* 128.571% */
+  margin-top: 2px;
 }
 
 @media screen and (max-width: 1000px) {
   .search {
     margin: 0 30px;
-  }
-  .form-search {
-    margin: 0 0 50px;
   }
   .form-checkbox__span {
     margin-top: 2px;
@@ -85,11 +117,8 @@
   .search {
     margin: 0 30px;
   }
-  .form-search {
-    margin: 0 0 50px;
-  }
-  .form-checkbox__span {
-    margin-top: 2px;
+  .form-checkbox {
+      margin: 40px 0 51px;
   }
 }
 
@@ -99,6 +128,7 @@
   }
   .form-checkbox {
     gap: 13px;
+    width: 148px;
   }
   .form-checkbox__span {
     font-size: 11px;

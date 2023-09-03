@@ -83,7 +83,7 @@
 @media screen and (max-width: 1100px) {
   .about-me__container {
     column-gap: 80px;
-}
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -117,7 +117,7 @@
   }
   .about-me__title {
     font-size: 18px;
-letter-spacing: -0.72px;
+    letter-spacing: -0.72px;
   }
   .about-me__container {
     grid-template-columns: 1fr;
@@ -139,12 +139,12 @@ letter-spacing: -0.72px;
   .about-me__text-title {
     margin: 0 0 20px;
     font-size: 30px;
-letter-spacing: -1.2px;
+    letter-spacing: -1.2px;
   }
   .about-me__paragraph,
   .about-me__paragraph-caption {
     font-size: 11px;
-line-height: 16px; /* 145.455% */
+    line-height: 16px; /* 145.455% */
     margin-bottom: 20px;
   }
   .about-me__link-github {

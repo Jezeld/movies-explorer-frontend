@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   text-decoration: none;
-  border-bottom: 1px solid #dadada;
+  border-bottom: 1px solid #424242;
   margin: 0;
   width: 100%;
   margin: 0px auto 20px;
@@ -67,6 +67,9 @@
   }
   .portfolio__image-arrow {
     max-width: 15px;
+  }
+  .portfolio-link {
+    border-bottom: 1px solid #e6e6e6;
   }
 }
 

@@ -3,7 +3,7 @@ import "./NavTab.css";
 
 function NavTab() {
   return (
-    <section className="navtab">
+    <section className="navtab" aria-label="меню">
       <nav className="navtab__menu">
         <a className="navtab__link" href="#about-project">
           О проекте

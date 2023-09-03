@@ -30,7 +30,7 @@ const Login = () => {
             id={"login"}
           >
             <label className={"Auth__label"}>
-              <p className={"Auth__txt"}>E-mail</p>
+              <span className={"Auth__txt"}>E-mail</span>
               <input
                 onChange={(e) => {
                   handleChange(e);
@@ -46,7 +46,7 @@ const Login = () => {
               <span className={"Auth__error"}>{errors.email}</span>
             </label>
             <label className={"Auth__label"}>
-              <p className={"Auth__txt"}>Пароль</p>
+              <span className={"Auth__txt"}>Пароль</span>
               <input
                 onChange={(e) => {
                   handleChange(e);
@@ -57,6 +57,7 @@ const Login = () => {
                 name={"password"}
                 minLength={8}
                 required={true}
+                placeholder={"•••••••••••••"}
               />
               <span className={"Auth__error"}>{errors.password}</span>
             </label>

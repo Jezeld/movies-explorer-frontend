@@ -15,7 +15,7 @@ function MoviesCard ({ movie }) {
       onMouseLeave={() => setIsShown(false)}
     >
       <article>
-        <img className='moviesCard__image' src={movie.image} alt={movie.name} />
+        <img className='moviesCard__image' src={movie.image} alt={movie.nameRU} />
         <div className='moviesCard__name'>
           <div className='moviesCard__text-content'>
             <h2 className='moviesCard__title'>{movie.nameRU}</h2>

@@ -1,12 +1,41 @@
-import React from "react";
+
+import React, { useState } from "react";
 import "./Profile.css";
 import { Link } from "react-router-dom";
+import useValidation from "../../hooks/useValidation";
 
 function Profile() {
+  const [isEditActive, setIsEditActive] = useState(false);
+  const handleSubmit = e => {
+    e.preventDefault();
+    setIsEditActive(false);
+  };
+  const { values, handleChange } = useValidation();
+
+  const button = isEditActive ? (
+    <button
+      type={"submit"}
+      className={"profile-form__button  profile-form__button_save"}
+      onClick={() => setIsEditActive(false)}
+    >
+      Сохранить
+    </button>
+  ) : (
+    <button
+      type={"button"}
+      className={"profile-form__button"}
+      onClick={() => setIsEditActive(true)}
+    >
+      Редактировать
+    </button>
+  );
   return (
     <section className="profile">
       <h2 className="profile__title"> Привет, Виталий!</h2>
-      <form className="profile-form">
+      <form className="profile-form"  onSubmit={e => {
+            handleSubmit(e);
+          }}
+          >
         <div className="profile-form__item profile-form__item-one">
           <label className="profile-form__label">Имя</label>
           <input
@@ -15,8 +44,10 @@ function Profile() {
             required
             minLength="1"
             maxLength="30"
-            name="user"
+            name="name"
             type="text"
+            onChange={e => handleChange(e)}
+            value={values.name || ""}
           ></input>
         </div>
         <div className="profile-form__item ">
@@ -25,21 +56,19 @@ function Profile() {
             className="profile-form__input"
             placeholder="pochta@yandex.ru"
             required
-            minLength="1"
+            minLength="4"
             maxLength="30"
             name="email"
             type="email"
+            onChange={e => handleChange(e)}
+                  value={values.email || ""}
           ></input>
         </div>
-        <button className="profile-form__button" type="button">
-          Редактировать
-        </button>
-      </form>
-      <Link className="profile__link" to="/signin">
-        <button className="profile__button-exit" type="button">
+      {button}
+      <Link  className={ !isEditActive ? "profile__link" : "profile__link-none"} to="/signin">
           Выйти из аккаунта
-        </button>
       </Link>
+      </form>
     </section>
   );
 }

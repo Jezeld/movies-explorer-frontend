@@ -9,7 +9,7 @@ function Portfolio() {
         <div className="portfolio__container">
      <Link
       className="portfolio-link"
-      type="link"
+      // type="link"
       target="blank"
       to="https://github.com/Jezeld/how-to-learn"
     >
@@ -18,7 +18,7 @@ function Portfolio() {
     </Link>
     <Link
       className="portfolio-link"
-      type="link"
+      // type="link"
       target="blank"
       to="https://github.com/Jezeld/russian-travel"
     >
@@ -27,7 +27,7 @@ function Portfolio() {
     </Link>
     <Link
       className="portfolio-link"
-      type="link"
+      // type="link"
       target="blank"
       to="https://github.com/Jezeld/react-mesto-api-full-gha"
     >

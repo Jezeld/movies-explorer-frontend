@@ -23,7 +23,7 @@ function Footer() {
             <div className="footer__links">
               <Link
                 className="footer__item footer__item-link"
-                type="link"
+                // type="link"
                 target="blank"
                 to="https://practicum.yandex.ru/"
               >
@@ -31,7 +31,7 @@ function Footer() {
               </Link>
               <Link
                 className="footer__item footer__item-link"
-                type="link"
+                // type="link"
                 target="blank"
                 to="https://github.com/Jezeld"
               >

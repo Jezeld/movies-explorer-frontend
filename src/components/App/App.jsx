@@ -69,7 +69,7 @@ function App() {
     auth
       .register(name, email, password)
       .then(() => {
-        auth.login(email, password);
+        handleLogin(email, password);
         navigate("/signin");
       })
       .catch((err) => {

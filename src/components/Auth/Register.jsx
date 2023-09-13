@@ -41,8 +41,8 @@ const Register = ({ onRegister, isMessageApi, setIsMessageApi }) => {
                 type={"text"}
                 name={"name"}
                 id="name"
-                minLength={4}
-                maxLength={40}
+                minLength={3}
+                maxLength={30}
                 required={true}
                 placeholder="Имя"
               />
@@ -60,6 +60,8 @@ const Register = ({ onRegister, isMessageApi, setIsMessageApi }) => {
                 id="email"
                 required={true}
                 placeholder="Email"
+                // pattern="/.+@.+\..+/i"
+                pattern="^[a-zA-Z0-9_.+\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$"
               />
               <span className={"Auth__error"}>{errors.email}</span>
             </label>
@@ -76,7 +78,6 @@ const Register = ({ onRegister, isMessageApi, setIsMessageApi }) => {
                 type={"password"}
                 name={"password"}
                 minLength={6}
-                maxLength={40}
                 required={true}
                 id="password"
                 placeholder="Пароль"

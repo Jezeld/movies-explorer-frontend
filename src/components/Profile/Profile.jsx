@@ -79,13 +79,13 @@ function Profile({
           <input
             className="profile-form__input"
             required
-            minLength="4"
-            maxLength="30"
             name="email"
             type="email"
             placeholder={currentUser.email}
             value={values.email ? values.email : ""}
             onChange={handleChange}
+            // pattern="/.+@.+\..+/i"
+            pattern="^[a-zA-Z0-9_.+\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$"
             disabled={!isInputActive}
           ></input>
            <span

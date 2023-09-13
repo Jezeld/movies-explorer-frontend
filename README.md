@@ -5,7 +5,7 @@
 
 ## Ссылки на проект
 
-IP api.moviesexplorer.jezeld.nomoreparties.co
+IP 158.160.19.230
 
 Frontend https://moviesexplorer.jezeld.nomoreparties.co
 

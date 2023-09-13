@@ -1,10 +1,11 @@
 const SCREEN_320 = 740;
-const SCREEN_768 = 818;
+const SCREEN_768 = 1100;
 const CARDS_SCREEN_1280 = 12;
 const CARDS_SCREEN_768 = 8;
 const CARDS_SCREEN_320 = 5;
-const MORE_1280 = 4;
+const MORE_1280 = 3;
 const MORE_768 = 2;
+const MORE_320 = 1;
 const movieTime = 40;
 
 export function findMoviesName (movies, name) {
@@ -27,6 +28,7 @@ export {
   CARDS_SCREEN_320,
   MORE_1280,
   MORE_768,
+  MORE_320,
 }
 
 

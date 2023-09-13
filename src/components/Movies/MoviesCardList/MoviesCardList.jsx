@@ -10,6 +10,7 @@ import {
   CARDS_SCREEN_320,
   MORE_1280,
   MORE_768,
+  MORE_320,
 } from "../../../utils/constants";
 
 function MoviesCardList({
@@ -42,7 +43,7 @@ function MoviesCardList({
       setMoreCards(MORE_768);
     } else {
       setCards(CARDS_SCREEN_320);
-      setMoreCards(MORE_768);
+      setMoreCards(MORE_320);
     }
   }
 

@@ -4,16 +4,18 @@ import { Link } from "react-router-dom";
 import useValidation from "../../hooks/useValidation";
 import logo from "../../images/logo.svg";
 
-const Register = () => {
-  const { values, handleChange, errors, isValid, resetForm } = useValidation();
+const Register = ({ onRegister, isMessageApi, setIsMessageApi }) => {
+  const { values, handleChange, errors, isValid, resetForm, isDisabled } =
+    useValidation({ name: "", email: "", password: "" });
 
   useEffect(() => {
     resetForm();
   }, [resetForm]);
 
-  const submitHandler = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-  };
+    onRegister(values.name, values.email, values.password);
+  }
 
   return (
     <>
@@ -25,24 +27,24 @@ const Register = () => {
           <h1 className={"Auth__title"}>Добро пожаловать!</h1>
           <form
             className={"Auth__form"}
-            onSubmit={(e) => {
-              submitHandler(e);
-            }}
+            onSubmit={handleSubmit}
             id={"register"}
+            name={`signup`}
+            noValidate
           >
             <label className={"Auth__label"}>
               <span className={"Auth__txt"}>Имя</span>
               <input
-                onChange={(e) => {
-                  handleChange(e);
-                }}
+                onChange={handleChange}
                 value={values.name || ""}
                 className={"Auth__input"}
                 type={"text"}
                 name={"name"}
+                id="name"
                 minLength={4}
+                maxLength={40}
                 required={true}
-                placeholder="Виталий"
+                placeholder="Имя"
               />
               <span className={"Auth__error"}>{errors.name}</span>
             </label>
@@ -50,25 +52,21 @@ const Register = () => {
             <label className={"Auth__label"}>
               <span className={"Auth__txt"}>E-mail</span>
               <input
-                onChange={(e) => {
-                  handleChange(e);
-                }}
+                onChange={handleChange}
                 value={values.email || ""}
                 className={"Auth__input"}
                 type={"email"}
                 name={"email"}
-                minLength={4}
+                id="email"
                 required={true}
-                placeholder="pochta@yandex.ru"
+                placeholder="Email"
               />
               <span className={"Auth__error"}>{errors.email}</span>
             </label>
             <label className={"Auth__label"}>
               <span className={"Auth__txt"}>Пароль</span>
               <input
-                onChange={(e) => {
-                  handleChange(e);
-                }}
+                onChange={handleChange}
                 value={values.password || ""}
                 className={
                   errors.password
@@ -77,23 +75,32 @@ const Register = () => {
                 }
                 type={"password"}
                 name={"password"}
-                minLength={8}
+                minLength={6}
+                maxLength={40}
                 required={true}
-                placeholder={"•••••••••••••"}
+                id="password"
+                placeholder="Пароль"
               />
               <span className={"Auth__error"}>{errors.password}</span>
             </label>
+            <span className="Auth__error-server">{isMessageApi}</span>
             <button
               type={"submit"}
-              className={"Auth__btn"}
-              disabled={!isValid}
+              className={`Auth__btn ${
+                !isValid || isDisabled ? "Auth__btn_disabled" : ""
+              }`}
+              disabled={!isValid || isDisabled}
             >
               Зарегистрироваться
             </button>
           </form>
           <div className={"Auth__notation"}>
             <p className={"Auth__notation-txt"}>Уже зарегистрированы?</p>
-            <Link to={"/signin"} className={"Auth__link"}>
+            <Link
+              onClick={() => setIsMessageApi("")}
+              to={"/signin"}
+              className={"Auth__link"}
+            >
               Войти
             </Link>
           </div>

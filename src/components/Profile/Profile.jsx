@@ -1,73 +1,124 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Profile.css";
 import { Link } from "react-router-dom";
 import useValidation from "../../hooks/useValidation";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile() {
-  const [isEditActive, setIsEditActive] = useState(false);
-  const handleSubmit = e => {
+function Profile({
+  isMessageApi,
+  signOut,
+  handleUpdateProfile,
+  setIsMessageApi,
+  textMessage,
+  setSaveMessage,
+}) {
+  const { isValid, values, errors, handleChange, setValues, resetForm } =
+    useValidation();
+
+  const { currentUser } = useContext(CurrentUserContext);
+
+  useEffect(() => {
+    resetForm();
+  }, [resetForm]);
+
+  useEffect(() => {
+    setValues({
+      name: currentUser.name,
+      email: currentUser.email,
+    });
+  }, [setValues, currentUser.name, currentUser.email]);
+
+  function handleSubmit(e) {
     e.preventDefault();
-    setIsEditActive(false);
-  };
-  const { values, handleChange } = useValidation();
+    const { name, email } = values;
+    handleUpdateProfile({ name, email });
+    setIsSuccess(false);
+  }
 
-  const button = isEditActive ? (
-    <button
-      type={"submit"}
-      className={"profile-form__button  profile-form__button_save"}
-      onClick={() => setIsEditActive(false)}
-    >
-      Сохранить
-    </button>
-  ) : (
-    <button
-      type={"button"}
-      className={"profile-form__button"}
-      onClick={() => setIsEditActive(true)}
-    >
-      Редактировать
-    </button>
-  );
+  const [isInputActive, setIsInputActive] = useState(false);
+  const [isSuccess, setIsSuccess] = useState();
+
+  const buttonIsValid =
+    isValid &&
+    (values.name !== currentUser.name || values.email !== currentUser.email);
+
+    const handleEdit = () => {
+      setIsSuccess(true);
+        setIsInputActive(true);
+                setIsMessageApi("");
+                setSaveMessage({
+                  textMessage: '',
+                });
+    };
+
   return (
     <section className="profile">
-      <h2 className="profile__title"> Привет, Виталий!</h2>
-      <form className="profile-form"  onSubmit={e => {
-            handleSubmit(e);
-          }}
-          >
+      <h2 className="profile__title">Привет, {currentUser.name}!</h2>
+      <form className="profile-form" onSubmit={handleSubmit}>
         <div className="profile-form__item profile-form__item-one">
           <label className="profile-form__label">Имя</label>
           <input
             className="profile-form__input"
-            placeholder="Виталий"
             required
-            minLength="1"
+            minLength="2"
             maxLength="30"
             name="name"
-            type="text"
-            onChange={e => handleChange(e)}
-            value={values.name || ""}
+            placeholder={currentUser.name}
+            value={values.name ? values.name : ""}
+            onChange={handleChange}
+            disabled={!isInputActive}
           ></input>
+           <span
+            className={`profile__span`}
+          >
+          {errors.name}
+          </span>
         </div>
         <div className="profile-form__item ">
           <label className="profile-form__label">E-mail</label>
           <input
             className="profile-form__input"
-            placeholder="pochta@yandex.ru"
             required
             minLength="4"
             maxLength="30"
             name="email"
             type="email"
-            onChange={e => handleChange(e)}
-                  value={values.email || ""}
+            placeholder={currentUser.email}
+            value={values.email ? values.email : ""}
+            onChange={handleChange}
+            disabled={!isInputActive}
           ></input>
+           <span
+            className={`profile__span`}
+          >
+{errors.email}
+          </span>
         </div>
-      {button}
-      <Link  className={ !isEditActive ? "profile__link" : "profile__link-none"} to="/signin">
-          Выйти из аккаунта
-      </Link>
+        <span className="profile-form__error-message">{isMessageApi}</span>
+        <span className="profile-form__message">{textMessage}</span>
+        { isSuccess ? (
+          <button
+            className={
+              buttonIsValid
+                ? "profile-form__button_save"
+                : "profile-form__button_save profile-form__button_disabled"
+            }
+            disabled={!buttonIsValid}
+          >
+            Сохранить
+          </button>
+        ) : (
+          <>
+            <button
+              className={"profile-form__button"}
+              onClick={handleEdit}>
+              Редактировать
+            </button>
+            <Link to="/" className={"profile__link"} onClick={signOut}>
+              Выйти из аккаунта
+            </Link>
+          </>
+        )}
       </form>
     </section>
   );

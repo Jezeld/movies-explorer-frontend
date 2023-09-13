@@ -1,23 +1,10 @@
-// import React from "react";
-// import "./Header.css";
-// import {Route, Routes, Link} from 'react-router-dom';
 
-// function Header() {
-//   return (
-//     <header className="header">
-//       <div className="header__wrapper">
-//         <div className="header__logo"></div>
-//       </div>
-//     </header>
-//   );
-// }
-
-// export default Header;
 import { Link, useLocation } from "react-router-dom";
-
 import "./Header.css";
+import Navigation from "../Navigation/Navigation.jsx";
+import NavigationMovie from "../NavigationMovie/NavigationMovie.jsx";
 
-const Header = ({ children }) => {
+const Header = ({isLoggedIn }) => {
   const location = useLocation();
 
   const header =
@@ -33,7 +20,8 @@ const Header = ({ children }) => {
           <Link to="/#">
             <div className="header__logo"></div>
           </Link>
-          {children}
+          {isLoggedIn ? <NavigationMovie /> : <Navigation />}
+           {/* {location.pathname === '/' ? <Navigation /> :  <NavigationMovie /> } */}
         </header>
       )}
     </>

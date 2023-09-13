@@ -23,6 +23,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  position: relative;
 }
 .Auth__txt {
   margin: 0;
@@ -120,12 +121,37 @@
 .Auth__input_error {
   color: #ee3465;
 }
+.Auth__btn_disabled {
+  background-color: rgb(47, 47, 47);
+  color: #c2c2c2;
+}
 
+.Auth__btn_disabled:hover {
+  background-color: rgba(47, 47, 47);
+}
 
 .Auth__input:focus {
   transition: border ease 0.5s;
   border: 1px solid #4285F4;
 }
+
+.Auth__error-server {
+  width: 100%;
+  position: absolute;
+  top: 285px;
+  height: 24px;
+  color:  #ee3465;
+  text-align: center;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: flex;
+}
+
+/* .Auth__error-server_visible {
+  display: flex;
+} */
 
 @media screen and (max-width: 1279px) {
   .Auth__wrapper {

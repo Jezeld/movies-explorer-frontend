@@ -21,7 +21,9 @@
   max-width: 1140px;
   width: 100%;
   padding: 0;
+  padding-left: 10px;
   min-height: 46px;
+  color: white;
 }
 .form-search__input::placeholder {
   color: #8b8b8b;

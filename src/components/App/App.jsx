@@ -14,6 +14,7 @@ import "./App.css";
 import api from "../../utils/MoviesApi";
 import auth from "../../utils/Auth";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ProtectedRouteAuth from "../ProtectedRoute/ProtectedRouteAuth";
 import { findMoviesName, findMoviesTime } from "../../utils/constants";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { mainApi } from "../../utils/MainApi";
@@ -256,28 +257,28 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
-              path="/signin"
-              element={
-                <Login
+             <Route
+          path='/signin'
+          element={<ProtectedRouteAuth isLoggedIn={stateIsLogin.isLoggedIn}>
+          <Login
                   isLoggedIn={stateIsLogin.isLoggedIn}
                   onLogin={handleLogin}
                   isMessageApi={isMessageApi}
                   setIsMessageApi={setIsMessageApi}
+                  />
+                  </ProtectedRouteAuth>}
                 />
-              }
-            />
-            <Route
-              path="/signup"
-              element={
-                <Register
+               <Route
+          path='/signup'
+          element={<ProtectedRouteAuth isLoggedIn={stateIsLogin.isLoggedIn}>
+          <Register
                   isLoggedIn={stateIsLogin.isLoggedIn}
                   onRegister={handleRegister}
                   isMessageApi={isMessageApi}
                   setIsMessageApi={setIsMessageApi}
+                  />
+                  </ProtectedRouteAuth>}
                 />
-              }
-            />
             <Route
               path="/profile"
               element={

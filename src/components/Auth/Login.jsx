@@ -16,6 +16,11 @@ const Login = ({ onLogin, isMessageApi, setIsMessageApi }) => {
     resetForm();
   }, [resetForm]);
 
+  const handleChangeResetApi = (e) => {
+    handleChange(e);
+    setIsMessageApi("");
+};
+
   return (
     <>
       <section className={"Auth"}>
@@ -34,7 +39,7 @@ const Login = ({ onLogin, isMessageApi, setIsMessageApi }) => {
             <label className={"Auth__label"}>
               <span className={"Auth__txt"}>E-mail</span>
               <input
-                onChange={handleChange}
+                onChange={handleChangeResetApi}
                 value={values.email || ""}
                 className={"Auth__input"}
                 type={"email"}
@@ -49,7 +54,7 @@ const Login = ({ onLogin, isMessageApi, setIsMessageApi }) => {
             <label className={"Auth__label"}>
               <span className={"Auth__txt"}>Пароль</span>
               <input
-                onChange={handleChange}
+                onChange={handleChangeResetApi}
                 value={values.password || ""}
                 className={"Auth__input"}
                 type={"password"}

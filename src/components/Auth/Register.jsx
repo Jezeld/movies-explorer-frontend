@@ -58,7 +58,7 @@ const Register = ({ onRegister, isMessageApi, setIsMessageApi }) => {
             <label className={"Auth__label"}>
               <span className={"Auth__txt"}>E-mail</span>
               <input
-                onChange={handleChange}
+                onChange={handleChangeResetApi}
                 value={values.email || ""}
                 className={"Auth__input"}
                 type={"email"}
@@ -74,7 +74,7 @@ const Register = ({ onRegister, isMessageApi, setIsMessageApi }) => {
             <label className={"Auth__label"}>
               <span className={"Auth__txt"}>Пароль</span>
               <input
-                onChange={handleChange}
+                onChange={handleChangeResetApi}
                 value={values.password || ""}
                 className={
                   errors.password

@@ -28,6 +28,8 @@ function SearchForm({ searchAllMovies, stateValues, searchShortMovies }) {
     };
     setValues(newValues);
     searchShortMovies(newValues);
+    // console.log('values', values)
+    // console.log('newValues', newValues)
   }
 
   return (

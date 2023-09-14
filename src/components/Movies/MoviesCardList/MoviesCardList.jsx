@@ -19,9 +19,12 @@ function MoviesCardList({
   handleCardDelete,
 }) {
   const [visibleMovies, setVisibleMovies] = useState([]);
-  const [hiddenMovies, setHiddenMovies] = useState([]);
-
   const [cards, setCards] = useState(CARDS_SCREEN_1280);
+  // const [visibleMovies, setVisibleMovies] = useState(movies.slice(0, cards));
+  const [hiddenMovies, setHiddenMovies] = useState([]);
+  // const [hiddenMovies, setHiddenMovies] = useState(movies.slice(cards));
+
+  // const [cards, setCards] = useState(CARDS_SCREEN_1280);
   const [moreCards, setMoreCards] = useState(MORE_1280);
 
   useEffect(() => {
@@ -59,17 +62,23 @@ function MoviesCardList({
 
   return (
     <section className="moviesCardList" aria-label="article">
-      <ul className="moviesCardList-grid">
-        {visibleMovies.map((movie) => (
-          <MoviesCard
-            movie={movie}
-            key={movie.id ?? movie.movieId}
-            saveMovies={saveMovies}
-            handleLikeMovie={handleLikeMovie}
-            handleCardDelete={handleCardDelete}
-          />
-        ))}
-      </ul>
+        {visibleMovies.length === 0 ? (
+          <p>Ничего не найдено</p>
+        ) : (
+    <ul className="moviesCardList-grid">
+
+      {visibleMovies.map((movie) => (
+        <MoviesCard
+        movie={movie}
+        key={movie.id ?? movie.movieId}
+        saveMovies={saveMovies}
+        handleLikeMovie={handleLikeMovie}
+        handleCardDelete={handleCardDelete}
+        />
+       ))}
+
+     </ul>
+        )}
       <div className="addMovies">
         {visibleMovies.length > 0 && hiddenMovies.length > 0 && (
           <button

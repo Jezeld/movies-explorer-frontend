@@ -35,6 +35,11 @@ function Profile({
     setIsSuccess(false);
   }
 
+  const handleChangeResetApi = (e) => {
+    handleChange(e);
+    setIsMessageApi("");
+};
+
   const [isInputActive, setIsInputActive] = useState(false);
   const [isSuccess, setIsSuccess] = useState();
 
@@ -45,7 +50,7 @@ function Profile({
     const handleEdit = () => {
       setIsSuccess(true);
         setIsInputActive(true);
-                setIsMessageApi("");
+                // setIsMessageApi("");
                 setSaveMessage({
                   textMessage: '',
                 });
@@ -65,7 +70,7 @@ function Profile({
             name="name"
             placeholder={currentUser.name}
             value={values.name ? values.name : ""}
-            onChange={handleChange}
+            onChange={handleChangeResetApi}
             disabled={!isInputActive}
           ></input>
            <span
@@ -83,7 +88,7 @@ function Profile({
             type="email"
             placeholder={currentUser.email}
             value={values.email ? values.email : ""}
-            onChange={handleChange}
+            onChange={handleChangeResetApi}
             // pattern="/.+@.+\..+/i"
             pattern="^[a-zA-Z0-9_.+\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$"
             disabled={!isInputActive}

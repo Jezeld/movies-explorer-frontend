@@ -17,6 +17,7 @@ function Movies({movies, saveMovies, handleLikeMovie, findAllMovies, shortMovies
   }, [values]);
 
   function searchShortMovies(data) {
+    console.log('data', data)
     const newValues = {
       ...data,
       shorts: data.shorts,

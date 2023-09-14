@@ -17,6 +17,12 @@ const Register = ({ onRegister, isMessageApi, setIsMessageApi }) => {
     onRegister(values.name, values.email, values.password);
   }
 
+
+  const handleChangeResetApi = (e) => {
+    handleChange(e);
+    setIsMessageApi("");
+};
+
   return (
     <>
       <section className={"Auth"}>
@@ -35,13 +41,13 @@ const Register = ({ onRegister, isMessageApi, setIsMessageApi }) => {
             <label className={"Auth__label"}>
               <span className={"Auth__txt"}>Имя</span>
               <input
-                onChange={handleChange}
+                onChange={handleChangeResetApi}
                 value={values.name || ""}
                 className={"Auth__input"}
                 type={"text"}
                 name={"name"}
                 id="name"
-                minLength={3}
+                minLength={2}
                 maxLength={30}
                 required={true}
                 placeholder="Имя"
@@ -98,7 +104,7 @@ const Register = ({ onRegister, isMessageApi, setIsMessageApi }) => {
           <div className={"Auth__notation"}>
             <p className={"Auth__notation-txt"}>Уже зарегистрированы?</p>
             <Link
-              onClick={() => setIsMessageApi("")}
+              // onClick={() => setIsMessageApi("")}
               to={"/signin"}
               className={"Auth__link"}
             >

@@ -179,13 +179,15 @@ function App() {
       });
   }
 
+
   function shortMovies(data) {
-    const findShortMovies =
-      JSON.parse(localStorage.getItem("findShortMovies")) || [];
+    const movies = JSON.parse(localStorage.getItem("allMovies"));
+
+    let nameMoviesShowed = findMoviesName(movies, data.search);
 
     const shortMoviesShowed = data.shorts
-      ? findMoviesTime(findShortMovies)
-      : findShortMovies;
+      ? findMoviesTime(nameMoviesShowed)
+      : nameMoviesShowed;
     setMovies(shortMoviesShowed);
   }
 
@@ -210,7 +212,14 @@ function App() {
   }
 
   function signOut() {
-    localStorage.clear();
+    // localStorage.clear();
+    localStorage.removeItem("jwt");
+    localStorage.removeItem('stateIsLogin')
+    localStorage.removeItem('findShortMovies')
+    localStorage.removeItem('allMovies')
+    localStorage.removeItem('findMovies')
+    setSaveMovies([])
+    setMovies([])
     setStateIsLogin({
       isLoggedIn: false,
     });

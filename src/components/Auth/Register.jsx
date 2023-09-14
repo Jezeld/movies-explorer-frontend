@@ -104,7 +104,7 @@ const Register = ({ onRegister, isMessageApi, setIsMessageApi }) => {
           <div className={"Auth__notation"}>
             <p className={"Auth__notation-txt"}>Уже зарегистрированы?</p>
             <Link
-              // onClick={() => setIsMessageApi("")}
+              onClick={() => setIsMessageApi("")}
               to={"/signin"}
               className={"Auth__link"}
             >

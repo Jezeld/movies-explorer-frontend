@@ -15,6 +15,7 @@ import {
 function MoviesCardList({
   movies,
   query,
+  short,
   saveMovies,
   handleLikeMovie,
   handleCardDelete,
@@ -59,7 +60,7 @@ function MoviesCardList({
 
   return (
     <section className="moviesCardList" aria-label="article">
-        { visibleMovies.length === 0 && query ? (
+        { visibleMovies.length === 0 && (query || short) ? (
           <p>Ничего не найдено</p>
         ) : (
     <ul className="moviesCardList-grid">

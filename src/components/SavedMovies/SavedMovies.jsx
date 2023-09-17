@@ -3,53 +3,96 @@ import SearchForm from "../Movies/SearchForm/SearchForm";
 import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 import "./SavedMovies.css";
 import { useState, useEffect } from "react";
-import { findMoviesName, findMoviesTime } from "../../utils/constants";
+import { mainApi } from "../../utils/MainApi";
 
-function SavedMovies({ saveMovies, handleCardDelete }) {
-  const [values, setValues] = useState({
-    search: "",
-    shorts: false,
-  });
-  const [movies, setMovies] = useState(saveMovies);
+function SavedMovies({
+  saveMovies,
+  setSaveMovies,
+  handleCardDelete,
+}) {
+  const [filteredMoviesSave, setFilteredMoviesSave] = useState([]);
+  const [querySave, setQuerySave] = useState("");
+  const [shortSave, setShortSave] = useState(false);
 
-  function updateMovies(values) {
-    const allMovies = findMoviesName(saveMovies, values.search);
-    const filteredMovies = values.shorts
-      ? findMoviesTime(allMovies)
-      : allMovies;
+  const refreshMoviesSave = (saveMovies) => {
+    setSaveMovies(saveMovies);
+    localStorage.setItem("allMoviesSave", JSON.stringify(saveMovies));
+  };
 
-    setMovies(filteredMovies);
-  }
+  const refreshFindMoviesSave = (filteredMoviesSave) => {
+    setFilteredMoviesSave(filteredMoviesSave);
+    localStorage.setItem("findMoviesSave", JSON.stringify(filteredMoviesSave));
+  };
 
-  function searchAllMovies(values) {
-    updateMovies(values);
-    setValues(values);
-    return Promise.resolve();
-  }
+  const refreshSearchQuerySave = (querySave) => {
+    setQuerySave(querySave);
+    localStorage.setItem("querySave", querySave);
+  };
 
-  function searchShortMovies(_values) {
-    const newValues = {
-      ...values,
-      shorts: _values.shorts,
-    };
-
-    updateMovies(newValues);
-    setValues(newValues);
-  }
+  const refreshShortMovieSave = (shortSave) => {
+    setShortSave(shortSave);
+    localStorage.setItem("shortSave", JSON.stringify(shortSave));
+  };
 
   useEffect(() => {
-    updateMovies(values);
-  }, [saveMovies]);
+    refreshMoviesSave(
+      JSON.parse(localStorage.getItem("allMoviesSave") || "[]")
+    );
+    refreshFindMoviesSave(
+      JSON.parse(localStorage.getItem("findMoviesSave") || "[]")
+    );
+    refreshSearchQuerySave(localStorage.getItem("querySave") || "");
+    refreshShortMovieSave(
+      JSON.parse(localStorage.getItem("shortSave") || "false")
+    );
+    mainApi
+      .getSavedMovies()
+      .then((movies) => {
+        refreshMoviesSave(movies);
+        refreshFindMoviesSave(movies);
+      })
+      .catch((error) => {
+        console.log(`Ошибка: ${error}`);
+      });
+  }, []);
+
+  const findMoviesByName = (saveMovies, key = "") => {
+    const wordByLowerCase = key.toLowerCase();
+    const filterMovie = saveMovies.filter((movie) =>
+      key ? movie.nameRU.toLowerCase().includes(wordByLowerCase) : true
+    );
+
+    return filterMovie.sort((a, b) => {
+      if (a.nameRU < b.nameRU) return -1;
+      if (a.nameRU > b.nameRU) return 1;
+      return 0;
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const filteredMovies = findMoviesByName(saveMovies, querySave);
+    setSaveMovies(filteredMovies);
+    setFilteredMoviesSave(filteredMovies);
+  };
 
   return (
     <section className="savedMovies" aria-label="сохраненные фильмы">
       <SearchForm
-        searchShortMovies={searchShortMovies}
-        searchAllMovies={searchAllMovies}
-        stateValues={values}
+        short={shortSave}
+        onSubmit={handleSubmit}
+        refreshSearchQuery={refreshSearchQuerySave}
+        refreshShortMovie={refreshShortMovieSave}
       />
-      {!movies ? null : (
-        <MoviesCardList movies={movies} handleCardDelete={handleCardDelete} />
+      {!saveMovies ? null : (
+        <MoviesCardList
+          movies={saveMovies.filter(
+            (movie) => !shortSave || movie.duration <= 40
+          )}
+          short={shortSave}
+          saveMovies={saveMovies}
+          query={querySave}
+          handleCardDelete={handleCardDelete}
+        />
       )}
     </section>
   );

@@ -14,17 +14,14 @@ import {
 
 function MoviesCardList({
   movies,
+  query,
   saveMovies,
   handleLikeMovie,
   handleCardDelete,
 }) {
   const [visibleMovies, setVisibleMovies] = useState([]);
   const [cards, setCards] = useState(CARDS_SCREEN_1280);
-  // const [visibleMovies, setVisibleMovies] = useState(movies.slice(0, cards));
   const [hiddenMovies, setHiddenMovies] = useState([]);
-  // const [hiddenMovies, setHiddenMovies] = useState(movies.slice(cards));
-
-  // const [cards, setCards] = useState(CARDS_SCREEN_1280);
   const [moreCards, setMoreCards] = useState(MORE_1280);
 
   useEffect(() => {
@@ -62,11 +59,10 @@ function MoviesCardList({
 
   return (
     <section className="moviesCardList" aria-label="article">
-        {visibleMovies.length === 0 ? (
+        { visibleMovies.length === 0 && query ? (
           <p>Ничего не найдено</p>
         ) : (
     <ul className="moviesCardList-grid">
-
       {visibleMovies.map((movie) => (
         <MoviesCard
         movie={movie}
@@ -76,9 +72,8 @@ function MoviesCardList({
         handleCardDelete={handleCardDelete}
         />
        ))}
-
      </ul>
-        )}
+       )}
       <div className="addMovies">
         {visibleMovies.length > 0 && hiddenMovies.length > 0 && (
           <button

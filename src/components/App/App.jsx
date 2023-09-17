@@ -11,17 +11,14 @@ import Login from "../Auth/Login";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import "./App.css";
-import api from "../../utils/MoviesApi";
 import auth from "../../utils/Auth";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ProtectedRouteAuth from "../ProtectedRoute/ProtectedRouteAuth";
-import { findMoviesName, findMoviesTime } from "../../utils/constants";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { mainApi } from "../../utils/MainApi";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const [saveMovies, setSaveMovies] = useState([]);
   const [isMessageApi, setIsMessageApi] = useState("");
@@ -139,17 +136,6 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    if (stateIsLogin.isLoggedIn) {
-      mainApi
-        .getSavedMovies()
-        .then((movies) => setSaveMovies(movies.reverse()))
-        .catch((error) => {
-          console.log(`Ошибка: ${error}`);
-        });
-    }
-  }, [stateIsLogin.isLoggedIn]);
-
   function handleCardDelete(movie) {
     mainApi
       .deleteMovie(movie._id)
@@ -179,45 +165,8 @@ function App() {
       });
   }
 
-
-  function shortMovies(data) {
-    const movies = JSON.parse(localStorage.getItem("allMovies"));
-
-    let nameMoviesShowed = findMoviesName(movies, data.search);
-
-    const shortMoviesShowed = data.shorts
-      ? findMoviesTime(nameMoviesShowed)
-      : nameMoviesShowed;
-    setMovies(shortMoviesShowed);
-  }
-
-  function nameMovies(data) {
-    const movies = JSON.parse(localStorage.getItem("allMovies"));
-
-    let nameMoviesShowed = findMoviesName(movies, data.search);
-    localStorage.setItem("findShortMovies", JSON.stringify(nameMoviesShowed));
-    shortMovies(data);
-  }
-
-  function findAllMovies(data) {
-    setIsLoading(true);
-    return api
-      .getInitialCards()
-      .then((movies) => {
-        localStorage.setItem("allMovies", JSON.stringify(movies));
-        nameMovies(data);
-      })
-      .catch((error) => console.log(`Ошибка: ${error}`))
-      .finally(() => setIsLoading(false));
-  }
-
   function signOut() {
-    // localStorage.clear();
-    localStorage.removeItem("jwt");
-    localStorage.removeItem('stateIsLogin')
-    localStorage.removeItem('findShortMovies')
-    localStorage.removeItem('allMovies')
-    localStorage.removeItem('findMovies')
+    localStorage.clear();
     setSaveMovies([])
     setMovies([])
     setStateIsLogin({
@@ -247,9 +196,6 @@ function App() {
                     handleLikeMovie={handleLikeMovie}
                     saveMovies={saveMovies}
                     setSaveMovies={setSaveMovies}
-                    findAllMovies={findAllMovies}
-                    shortMovies={shortMovies}
-                    isLoading={isLoading}
                   />
                 </ProtectedRoute>
               }
@@ -262,6 +208,7 @@ function App() {
                     movies={movies}
                     saveMovies={saveMovies}
                     handleCardDelete={handleCardDelete}
+                    setSaveMovies={setSaveMovies}
                   />
                 </ProtectedRoute>
               }

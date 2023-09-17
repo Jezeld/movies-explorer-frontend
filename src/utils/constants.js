@@ -5,19 +5,6 @@ const CARDS_SCREEN_768 = 8;
 const CARDS_SCREEN_320 = 5;
 const MORE_1280 = 3;
 const MORE_768 = 2;
-const movieTime = 40;
-
-export function findMoviesName (movies, name) {
-  return movies.filter((data) => {
-    return data.nameRU.toLowerCase().includes(name.toLowerCase())
-  })
-}
-
-export function findMoviesTime (movies) {
-  return movies.filter((data) => {
-    return data.duration <= movieTime
-  })
-}
 
 export {
   SCREEN_320,

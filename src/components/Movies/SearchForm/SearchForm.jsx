@@ -1,48 +1,19 @@
 import React from "react";
 import "./SearchForm.css";
-import { useState } from "react";
 
-function SearchForm({ searchAllMovies, stateValues, searchShortMovies }) {
-  const [values, setValues] = useState(stateValues);
-
-  function handleInputSearch(e) {
-    setValues({
-      ...values,
-      search: e.target.value,
-    });
-  }
-
-  function findMoviesByName() {
-    searchAllMovies(values).catch((error) => console.log(`Ошибка: ${error}`));
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    findMoviesByName();
-  }
-
-  function handleInputShort(e) {
-    const newValues = {
-      ...values,
-      shorts: e.target.checked,
-    };
-    setValues(newValues);
-    searchShortMovies(newValues);
-    // console.log('values', values)
-    // console.log('newValues', newValues)
-  }
-
+function SearchForm({  short, refreshShortMovie, refreshSearchQuery, onSubmit, query  })
+ {
   return (
     <section className="search" aria-label="поиск">
-      <form onSubmit={handleSubmit} noValidate className="form-search">
+      <form onSubmit={ onSubmit } noValidate className="form-search">
         <input
           required
           type="text"
           name="search"
           className="form-search__input"
           placeholder="Фильм"
-          value={values.search}
-          onChange={handleInputSearch}
+          value={ query }
+          onChange={e => refreshSearchQuery(e.target.value)}
         ></input>
         <button
           className="form-search__button"
@@ -53,8 +24,8 @@ function SearchForm({ searchAllMovies, stateValues, searchShortMovies }) {
           <label>
             <input
               type="checkbox"
-              checked={values.shorts}
-              onChange={handleInputShort}
+              checked={ short }
+              onChange={() => {refreshShortMovie(!short)}}
               className="form-checkbox__button"
               name="short-film"
             />

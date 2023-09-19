@@ -166,8 +166,7 @@ function App() {
 
   function signOut() {
     localStorage.clear();
-    setSaveMovies([])
-    // setMovies([])
+    setSaveMovies([]);
     setStateIsLogin({
       isLoggedIn: false,
     });
@@ -177,7 +176,6 @@ function App() {
     });
     navigate("/");
   }
-console.log('saveMovies', saveMovies);
 
   return (
     <>
@@ -211,28 +209,32 @@ console.log('saveMovies', saveMovies);
                 </ProtectedRoute>
               }
             />
-             <Route
-          path='/signin'
-          element={<ProtectedRouteAuth isLoggedIn={stateIsLogin.isLoggedIn}>
-          <Login
-                  isLoggedIn={stateIsLogin.isLoggedIn}
-                  onLogin={handleLogin}
-                  isMessageApi={isMessageApi}
-                  setIsMessageApi={setIsMessageApi}
+            <Route
+              path="/signin"
+              element={
+                <ProtectedRouteAuth isLoggedIn={stateIsLogin.isLoggedIn}>
+                  <Login
+                    isLoggedIn={stateIsLogin.isLoggedIn}
+                    onLogin={handleLogin}
+                    isMessageApi={isMessageApi}
+                    setIsMessageApi={setIsMessageApi}
                   />
-                  </ProtectedRouteAuth>}
-                />
-               <Route
-          path='/signup'
-          element={<ProtectedRouteAuth isLoggedIn={stateIsLogin.isLoggedIn}>
-          <Register
-                  isLoggedIn={stateIsLogin.isLoggedIn}
-                  onRegister={handleRegister}
-                  isMessageApi={isMessageApi}
-                  setIsMessageApi={setIsMessageApi}
+                </ProtectedRouteAuth>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <ProtectedRouteAuth isLoggedIn={stateIsLogin.isLoggedIn}>
+                  <Register
+                    isLoggedIn={stateIsLogin.isLoggedIn}
+                    onRegister={handleRegister}
+                    isMessageApi={isMessageApi}
+                    setIsMessageApi={setIsMessageApi}
                   />
-                  </ProtectedRouteAuth>}
-                />
+                </ProtectedRouteAuth>
+              }
+            />
             <Route
               path="/profile"
               element={

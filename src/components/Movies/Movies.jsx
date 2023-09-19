@@ -59,14 +59,14 @@ function Movies({ saveMovies, setSaveMovies, handleLikeMovie }) {
       })
       .catch((error) => console.log(`Ошибка: ${error}`))
       .finally(() => setIsLoading(false));
-      setisSucces(true);
+    setisSucces(true);
   };
 
-  const handleByShortCeckbox = (short) =>{
+  const handleByShortCeckbox = (short) => {
     const filteredMovies = findMoviesByName(movies, query);
     setMovies(filteredMovies);
     refreshShortMovie(short);
-  }
+  };
 
   return (
     <section className="movies">
@@ -81,8 +81,8 @@ function Movies({ saveMovies, setSaveMovies, handleLikeMovie }) {
         <Preloader />
       ) : (
         <MoviesCardList
-        isLoading={isLoading}
-        isSucces={isSucces}
+          isLoading={isLoading}
+          isSucces={isSucces}
           saveMovies={saveMovies}
           handleLikeMovie={handleLikeMovie}
           setSaveMovies={setSaveMovies}
@@ -95,4 +95,3 @@ function Movies({ saveMovies, setSaveMovies, handleLikeMovie }) {
 }
 
 export default Movies;
-

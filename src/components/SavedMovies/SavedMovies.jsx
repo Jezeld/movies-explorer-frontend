@@ -5,11 +5,7 @@ import "./SavedMovies.css";
 import { useState, useEffect } from "react";
 import { mainApi } from "../../utils/MainApi";
 
-function SavedMovies({
-  saveMovies,
-  setSaveMovies,
-  handleCardDelete,
-}) {
+function SavedMovies({ saveMovies, setSaveMovies, handleCardDelete }) {
   const [querySave, setQuerySave] = useState("");
   const [shortSave, setShortSave] = useState(false);
   const [isSucces, setisSucces] = useState(false);
@@ -62,20 +58,20 @@ function SavedMovies({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const filtereSavedMovies = JSON.parse(localStorage.getItem("findMoviesSave") || "[]");
+    const filtereSavedMovies = JSON.parse(
+      localStorage.getItem("findMoviesSave") || "[]"
+    );
 
     const filteredMovies = findMoviesByName(filtereSavedMovies, querySave);
     setSaveMovies(filteredMovies);
-    console.log('filteredMovies', filteredMovies);
     setisSucces(true);
-
   };
 
-  const handleByShortSaveCeckbox = (shortSave) =>{
-const filteredMovies = findMoviesByName(saveMovies, querySave);
+  const handleByShortSaveCeckbox = (shortSave) => {
+    const filteredMovies = findMoviesByName(saveMovies, querySave);
     setSaveMovies(filteredMovies);
     refreshShortMovieSave(shortSave);
-  }
+  };
 
   return (
     <section className="savedMovies" aria-label="сохраненные фильмы">

@@ -1,19 +1,24 @@
 import React from "react";
 import "./SearchForm.css";
 
-function SearchForm({  short, refreshShortMovie, refreshSearchQuery, onSubmit, query  })
- {
+function SearchForm({
+  short,
+  refreshShortMovie,
+  refreshSearchQuery,
+  onSubmit,
+  query,
+}) {
   return (
     <section className="search" aria-label="поиск">
-      <form onSubmit={ onSubmit } noValidate className="form-search">
+      <form onSubmit={onSubmit} noValidate className="form-search">
         <input
           required
           type="text"
           name="search"
           className="form-search__input"
           placeholder="Фильм"
-          value={ query }
-          onChange={e => refreshSearchQuery(e.target.value)}
+          value={query}
+          onChange={(e) => refreshSearchQuery(e.target.value)}
         ></input>
         <button
           className="form-search__button"
@@ -24,8 +29,10 @@ function SearchForm({  short, refreshShortMovie, refreshSearchQuery, onSubmit, q
           <label>
             <input
               type="checkbox"
-              checked={ short }
-              onChange={() => {refreshShortMovie(!short)}}
+              checked={short}
+              onChange={() => {
+                refreshShortMovie(!short);
+              }}
               className="form-checkbox__button"
               name="short-film"
             />

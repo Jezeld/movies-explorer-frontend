@@ -14,11 +14,11 @@ import {
 
 function MoviesCardList({
   movies,
-  query,
-  short,
+  isSucces,
   saveMovies,
   handleLikeMovie,
   handleCardDelete,
+  isLoading,
 }) {
   const [visibleMovies, setVisibleMovies] = useState([]);
   const [cards, setCards] = useState(CARDS_SCREEN_1280);
@@ -60,7 +60,7 @@ function MoviesCardList({
 
   return (
     <section className="moviesCardList" aria-label="article">
-        { visibleMovies.length === 0 && (query || short) ? (
+        { visibleMovies.length === 0 && isSucces  ? (
           <p>Ничего не найдено</p>
         ) : (
     <ul className="moviesCardList-grid">

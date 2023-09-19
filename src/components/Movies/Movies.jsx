@@ -5,23 +5,17 @@ import Preloader from "../Movies/Preloader/Preloader";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import api from "../../utils/MoviesApi";
-import { mainApi } from "../../utils/MainApi";
 
 function Movies({ saveMovies, setSaveMovies, handleLikeMovie }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [isSucces, setisSucces] = useState(false);
   const [movies, setMovies] = useState([]);
-  const [filteredMovies, setFilteredMovies] = useState([]);
   const [query, setQuery] = useState("");
   const [short, setShort] = useState(false);
 
   const refreshMovies = (movies) => {
     setMovies(movies);
     localStorage.setItem("allMovies", JSON.stringify(movies));
-  };
-
-  const refreshFindMovies = (movies) => {
-    setFilteredMovies(movies);
-    localStorage.setItem("findMovies", JSON.stringify(movies));
   };
 
   const refreshSearchQuery = (query) => {
@@ -34,24 +28,10 @@ function Movies({ saveMovies, setSaveMovies, handleLikeMovie }) {
     localStorage.setItem("short", JSON.stringify(short));
   };
 
-  const refreshMoviesSave = (saveMovies) => {
-    setSaveMovies(saveMovies);
-    localStorage.setItem("allMoviesSave", JSON.stringify(saveMovies));
-  };
-
   useEffect(() => {
     refreshMovies(JSON.parse(localStorage.getItem("allMovies") || "[]"));
-    refreshFindMovies(JSON.parse(localStorage.getItem("findMovies") || "[]"));
     refreshSearchQuery(localStorage.getItem("query") || "");
     refreshShortMovie(JSON.parse(localStorage.getItem("short") || "false"));
-    mainApi
-      .getSavedMovies()
-      .then((movies) => {
-        refreshMoviesSave(movies);
-      })
-      .catch((error) => {
-        console.log(`Ошибка: ${error}`);
-      });
   }, []);
 
   const findMoviesByName = (movies, key = "") => {
@@ -76,12 +56,17 @@ function Movies({ saveMovies, setSaveMovies, handleLikeMovie }) {
         const filteredMovies = findMoviesByName(movies, query);
         setMovies(filteredMovies);
         localStorage.setItem("allMovies", JSON.stringify(filteredMovies));
-        setFilteredMovies(filteredMovies);
-        localStorage.setItem("findMovies", JSON.stringify(filteredMovies));
       })
       .catch((error) => console.log(`Ошибка: ${error}`))
       .finally(() => setIsLoading(false));
+      setisSucces(true);
   };
+
+  const handleByShortCeckbox = (short) =>{
+    const filteredMovies = findMoviesByName(movies, query);
+    setMovies(filteredMovies);
+    refreshShortMovie(short);
+  }
 
   return (
     <section className="movies">
@@ -90,19 +75,18 @@ function Movies({ saveMovies, setSaveMovies, handleLikeMovie }) {
         onSubmit={handleSubmit}
         refreshSearchQuery={refreshSearchQuery}
         short={short}
-        refreshShortMovie={refreshShortMovie}
+        refreshShortMovie={handleByShortCeckbox}
       />
       {isLoading ? (
         <Preloader />
       ) : (
         <MoviesCardList
-          query={query}
-          short={short}
+        isLoading={isLoading}
+        isSucces={isSucces}
           saveMovies={saveMovies}
           handleLikeMovie={handleLikeMovie}
           setSaveMovies={setSaveMovies}
           isSavedMovies={false}
-          setFilteredMovies={setFilteredMovies}
           movies={movies.filter((movie) => !short || movie.duration <= 40)}
         />
       )}
@@ -111,3 +95,4 @@ function Movies({ saveMovies, setSaveMovies, handleLikeMovie }) {
 }
 
 export default Movies;
+

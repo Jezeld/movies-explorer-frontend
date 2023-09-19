@@ -19,7 +19,6 @@ import { mainApi } from "../../utils/MainApi";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  const [movies, setMovies] = useState([]);
   const [saveMovies, setSaveMovies] = useState([]);
   const [isMessageApi, setIsMessageApi] = useState("");
   const navigate = useNavigate();
@@ -168,7 +167,7 @@ function App() {
   function signOut() {
     localStorage.clear();
     setSaveMovies([])
-    setMovies([])
+    // setMovies([])
     setStateIsLogin({
       isLoggedIn: false,
     });
@@ -178,6 +177,7 @@ function App() {
     });
     navigate("/");
   }
+console.log('saveMovies', saveMovies);
 
   return (
     <>
@@ -192,7 +192,6 @@ function App() {
               element={
                 <ProtectedRoute isLoggedIn={stateIsLogin.isLoggedIn}>
                   <Movies
-                    movies={movies}
                     handleLikeMovie={handleLikeMovie}
                     saveMovies={saveMovies}
                     setSaveMovies={setSaveMovies}
@@ -205,7 +204,6 @@ function App() {
               element={
                 <ProtectedRoute isLoggedIn={stateIsLogin.isLoggedIn}>
                   <SavedMovies
-                    movies={movies}
                     saveMovies={saveMovies}
                     handleCardDelete={handleCardDelete}
                     setSaveMovies={setSaveMovies}

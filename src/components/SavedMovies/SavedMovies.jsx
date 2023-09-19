@@ -10,18 +10,13 @@ function SavedMovies({
   setSaveMovies,
   handleCardDelete,
 }) {
-  const [filteredMoviesSave, setFilteredMoviesSave] = useState([]);
   const [querySave, setQuerySave] = useState("");
   const [shortSave, setShortSave] = useState(false);
+  const [isSucces, setisSucces] = useState(false);
 
   const refreshMoviesSave = (saveMovies) => {
     setSaveMovies(saveMovies);
-    localStorage.setItem("allMoviesSave", JSON.stringify(saveMovies));
-  };
-
-  const refreshFindMoviesSave = (filteredMoviesSave) => {
-    setFilteredMoviesSave(filteredMoviesSave);
-    localStorage.setItem("findMoviesSave", JSON.stringify(filteredMoviesSave));
+    localStorage.setItem("findMoviesSave", JSON.stringify(saveMovies));
   };
 
   const refreshSearchQuerySave = (querySave) => {
@@ -36,9 +31,6 @@ function SavedMovies({
 
   useEffect(() => {
     refreshMoviesSave(
-      JSON.parse(localStorage.getItem("allMoviesSave") || "[]")
-    );
-    refreshFindMoviesSave(
       JSON.parse(localStorage.getItem("findMoviesSave") || "[]")
     );
     refreshSearchQuerySave(localStorage.getItem("querySave") || "");
@@ -49,7 +41,6 @@ function SavedMovies({
       .getSavedMovies()
       .then((movies) => {
         refreshMoviesSave(movies);
-        refreshFindMoviesSave(movies);
       })
       .catch((error) => {
         console.log(`Ошибка: ${error}`);
@@ -61,19 +52,30 @@ function SavedMovies({
     const filterMovie = saveMovies.filter((movie) =>
       key ? movie.nameRU.toLowerCase().includes(wordByLowerCase) : true
     );
-
     return filterMovie.sort((a, b) => {
       if (a.nameRU < b.nameRU) return -1;
       if (a.nameRU > b.nameRU) return 1;
       return 0;
     });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const filteredMovies = findMoviesByName(saveMovies, querySave);
+
+    const filtereSavedMovies = JSON.parse(localStorage.getItem("findMoviesSave") || "[]");
+
+    const filteredMovies = findMoviesByName(filtereSavedMovies, querySave);
     setSaveMovies(filteredMovies);
-    setFilteredMoviesSave(filteredMovies);
+    console.log('filteredMovies', filteredMovies);
+    setisSucces(true);
+
   };
+
+  const handleByShortSaveCeckbox = (shortSave) =>{
+const filteredMovies = findMoviesByName(saveMovies, querySave);
+    setSaveMovies(filteredMovies);
+    refreshShortMovieSave(shortSave);
+  }
 
   return (
     <section className="savedMovies" aria-label="сохраненные фильмы">
@@ -81,7 +83,7 @@ function SavedMovies({
         short={shortSave}
         onSubmit={handleSubmit}
         refreshSearchQuery={refreshSearchQuerySave}
-        refreshShortMovie={refreshShortMovieSave}
+        refreshShortMovie={handleByShortSaveCeckbox}
       />
       {!saveMovies ? null : (
         <MoviesCardList
@@ -89,6 +91,7 @@ function SavedMovies({
             (movie) => !shortSave || movie.duration <= 40
           )}
           short={shortSave}
+          isSucces={isSucces}
           saveMovies={saveMovies}
           query={querySave}
           handleCardDelete={handleCardDelete}

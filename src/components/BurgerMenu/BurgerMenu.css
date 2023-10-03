@@ -33,7 +33,7 @@
     right: 0;
     bottom: 0;
     animation: burgerAnimation 0.4s;
-    z-index: 1;
+    z-index: 3;
     will-change: opacity;
     visibility: visible;
   }

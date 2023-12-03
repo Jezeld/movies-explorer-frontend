@@ -18,6 +18,7 @@ class MainApi {
     }).then((res) => this._checkResponse(res));
   }
 
+
   changeUserInfo(name, email) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
@@ -64,7 +65,8 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-//   baseUrl: "http://localhost:3000",
-  baseUrl: 'https://api.moviesexplorer.jezeld.nomoreparties.co',
+  // baseUrl: "http://localhost:3000",
+  // baseUrl: 'https://api.moviesexplorer.jezeld.nomoreparties.co',
+  baseUrl: 'https://api.jezel.ru',
   headers: {},
 });

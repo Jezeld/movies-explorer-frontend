@@ -33,7 +33,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  max-width: 290px;
+  max-width: 250px;
 }
 .moviesCard__time {
   color: #8b8b8b;
@@ -53,6 +53,7 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  aspect-ratio: 1/1;
 }
 
 .moviesCard__like_active {

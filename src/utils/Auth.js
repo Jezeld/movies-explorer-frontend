@@ -44,7 +44,8 @@ class Auth {
 
 const auth = new Auth({
   // baseUrl: "http://localhost:3000",
-  baseUrl: 'https://api.moviesexplorer.jezeld.nomoreparties.co',
+  // baseUrl: 'https://api.moviesexplorer.jezeld.nomoreparties.co',
+  baseUrl: 'https://api.jezel.ru',
 });
 
 export default auth;

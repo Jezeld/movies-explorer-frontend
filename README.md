@@ -48,8 +48,8 @@
 
 ### Ссылки на проект
 
-IP 158.160.19.230
 
-Frontend [https://moviesexplorer.jezeld.nomoreparties.co](https://moviesexplorer.jezeld.nomoreparties.co)
 
-Backend [https://api.moviesexplorer.jezeld.nomoreparties.co](https://api.moviesexplorer.jezeld.nomoreparties.co)
+Frontend [https://jezel.ru](https://jezel.ru)
+
+Backend [https://api.jezel.ru](https://api.jezel.ru)
